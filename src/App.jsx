@@ -11,7 +11,7 @@ const App = () => {
     <Router>
       <div className="sm:flex relative sm:static">
         <Sidebar />
-        <div className="flex-1 absolute sm:static  sm:mt-0 p-4 ">
+        <div className="flex-1 absolute sm:static   sm:mt-0 p-4 ">
           <Routes>
             {/* <Route path="/overview" element={<Overview />} /> */}
             {/* <Route path="/user-management" element={<UserManagement />} /> */}
