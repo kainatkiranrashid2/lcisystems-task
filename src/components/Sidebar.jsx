@@ -56,7 +56,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative sm:relative">
       <div className="lg:hidden flex items-center p-4 bg-blue-700 text-white">
         <FaBars className="w-6 h-6 " onClick={toggleSidebar} />
       </div>
