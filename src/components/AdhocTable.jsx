@@ -18,23 +18,25 @@ const AdHocTable = ({ data }) => {
       <table>
         <thead>
           <tr>
-            <th>Bucket</th>
-            <th>Op-Code</th>
-            <th>Hours Used</th>
-            <th>Total Hours</th>
-            <th>Graphs</th>
+            <th className="text-[10px]">Bucket</th>
+            <th className="text-[10px]">Op-Code</th>
+            <th className="text-[10px]">Hours Used</th>
+            <th className="text-[10px]">Total Hours</th>
+            <th className="text-[10px]">Graphs</th>
           </tr>
         </thead>
         <tbody>
           {data.map((item, index) => (
             <tr key={index}>
-              <td>{item.taskDesc}</td>
-              <td>
+              <td className="text-[10px]">{item.taskDesc}</td>
+              <td className="text-[10px]">
                 {item.opCode ? `${item.opCode} - ${item.opCodeDesc}` : "---"}
               </td>
-              <td>{formatTime(item.usedTime)}</td>
-              <td>{formatTime(item.yearlyMinsSetAside)}</td>
-              <td>
+              <td className="text-[10px]">{formatTime(item.usedTime)}</td>
+              <td className="text-[10px]">
+                {formatTime(item.yearlyMinsSetAside)}
+              </td>
+              <td className="text-[10px]">
                 <div
                   className="graph-bar"
                   style={{ width: `${getRandomPercentage()}%` }}></div>

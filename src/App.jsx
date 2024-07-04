@@ -9,9 +9,9 @@ import Home from "./components/Home";
 const App = () => {
   return (
     <Router>
-      <div className="sm:flex relative sm:static">
+      <div className="block lg:flex ">
         <Sidebar />
-        <div className="flex-1 absolute sm:static   sm:mt-0 p-4 ">
+        <div className="flex-1 lg:ml-64 mt-16 sm:mt-0 p-0 sm:p-4">
           <Routes>
             {/* <Route path="/overview" element={<Overview />} /> */}
             {/* <Route path="/user-management" element={<UserManagement />} /> */}

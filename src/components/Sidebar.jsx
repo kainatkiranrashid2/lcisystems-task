@@ -56,13 +56,13 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="relative sm:relative">
-      <div className="lg:hidden flex items-center p-4 bg-blue-700 text-white">
+    <div className="h-16 lg:h-full">
+      <div className="xs:fixed lg:hidden flex items-center p-4 bg-blue-700 text-white">
         <FaBars className="w-6 h-6 " onClick={toggleSidebar} />
       </div>
 
       <div
-        className={`fixed lg:static top-0 left-0 h-full bg-blue-700 text-white flex flex-col transition-transform transform ${
+        className={`fixed top-0 left-0 h-full bg-blue-700 text-white flex flex-col transition-transform transform ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0 w-64 z-50`}>
         <div className="p-4 border-b border-blue-800">
