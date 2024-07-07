@@ -1,7 +1,6 @@
 import DayColumn from "./DayColumn";
 import PropTypes from "prop-types";
 import { format, addDays, startOfWeek, parseISO, isEqual } from "date-fns";
-import { useMemo } from "react";
 
 const WeeklySchedule = ({ routineData }) => {
   const currentDate = new Date();
@@ -11,14 +10,6 @@ const WeeklySchedule = ({ routineData }) => {
   );
 
   const dayAbbreviations = ["Sa", "Su", "Mo", "Tu", "We", "Th", "Fr"];
-
-  const maxTasks = useMemo(() => {
-    return Math.max(
-      ...routineData.map(
-        (task) => task.friendlySchedule.trim().split(" ").length
-      )
-    );
-  }, [routineData]);
 
   return (
     <div className="weekly-schedule">
@@ -45,7 +36,6 @@ const WeeklySchedule = ({ routineData }) => {
               format(day, "yyyy-MM-dd") === format(currentDate, "yyyy-MM-dd")
             }
             isWeekend={isWeekend}
-            maxTasks={maxTasks}
           />
         );
       })}

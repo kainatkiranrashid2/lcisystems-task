@@ -63,7 +63,6 @@ DayColumn.propTypes = {
   ).isRequired,
   isCurrentDay: PropTypes.bool.isRequired,
   isWeekend: PropTypes.bool.isRequired,
-  maxTasks: PropTypes.number.isRequired,
 };
 
 export default DayColumn;
