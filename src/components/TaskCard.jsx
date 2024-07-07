@@ -39,20 +39,19 @@ const TaskCard = ({ task }) => {
   }, [showTooltip]);
 
   return (
-    <div className="task-card-parent" ref={cardRef}>
-      <div
-        className={`task-card ${task.future === "1" ? "future" : ""}`}
-        onMouseEnter={() => setShowTooltip(true)}
-        onMouseLeave={() => setShowTooltip(false)}>
-        <div className="task-content">
-          <h4 className="text-[10px]">{task.cw_route_name}</h4>
-          <p className="text-[10px]">
-            {Math.floor(task.cleaning_Time_Min / 60)}h{" "}
-            {Math.round(task.cleaning_Time_Min % 60)}m
-          </p>
-        </div>
-        {task.specialties && <div className="specialty-indicator"></div>}
+    <div
+      ref={cardRef}
+      className={`task-card ${task.future === "1" ? "future" : ""}`}
+      onMouseEnter={() => setShowTooltip(true)}
+      onMouseLeave={() => setShowTooltip(false)}>
+      <div className="task-content">
+        <h4 className="text-[10px]">{task.cw_route_name}</h4>
+        <p className="text-[10px]">
+          {Math.floor(task.cleaning_Time_Min / 60)}h{" "}
+          {Math.round(task.cleaning_Time_Min % 60)}m
+        </p>
       </div>
+      {task.specialties && <div className="specialty-indicator"></div>}
       {showTooltip && (
         <div className="custom-tooltip" ref={tooltipRef}>
           <pre>{tooltipContent}</pre>

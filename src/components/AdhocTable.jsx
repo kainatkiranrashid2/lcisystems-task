@@ -18,25 +18,39 @@ const AdHocTable = ({ data }) => {
       <table>
         <thead>
           <tr>
-            <th className="text-[10px]">Bucket</th>
-            <th className="text-[10px]">Op-Code</th>
-            <th className="text-[10px]">Hours Used</th>
-            <th className="text-[10px]">Total Hours</th>
-            <th className="text-[10px]">Graphs</th>
+            <th className="text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px]">
+              Bucket
+            </th>
+            <th className="text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px]">
+              Op-Code
+            </th>
+            <th className="text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px]">
+              Hours Used
+            </th>
+            <th className="text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px]">
+              Total Hours
+            </th>
+            <th className="text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px]">
+              Graphs
+            </th>
           </tr>
         </thead>
         <tbody>
           {data.map((item, index) => (
             <tr key={index}>
-              <td className="text-[10px]">{item.taskDesc}</td>
-              <td className="text-[10px]">
+              <td className="text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px]">
+                {item.taskDesc}
+              </td>
+              <td className="text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px]">
                 {item.opCode ? `${item.opCode} - ${item.opCodeDesc}` : "---"}
               </td>
-              <td className="text-[10px]">{formatTime(item.usedTime)}</td>
-              <td className="text-[10px]">
+              <td className="text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px]">
+                {formatTime(item.usedTime)}
+              </td>
+              <td className="text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px]">
                 {formatTime(item.yearlyMinsSetAside)}
               </td>
-              <td className="text-[10px]">
+              <td className="text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px]">
                 <div
                   className="graph-bar"
                   style={{ width: `${getRandomPercentage()}%` }}></div>

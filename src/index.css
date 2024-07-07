@@ -5,22 +5,20 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 1px;
-  background-color: #ccc;
+  background-color: #fffcfc;
   /* border: 1px solid #ccc; */
 }
 
 .day-column {
-  background-color: white;
-  min-height: 600px; /* Adjust based on your needs */
-}
-.not-current-day {
-  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .day-header {
   text-align: center;
   padding: 10px 0;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid black;
 }
 
 .day-header h3 {
@@ -43,11 +41,12 @@
 .current-day {
   border: 3px solid #4a90e2;
 }
-
 .tasks-container {
-  display: grid;
-  grid-template-rows: repeat(10, 1fr);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
+
 .task-date-p {
   font-weight: bold;
   margin: 0px !important;
@@ -73,8 +72,11 @@
   padding: 5px;
 }
 .task-card-parent {
-  border-bottom: 1px solid #ccc;
+  flex: 1;
+  min-height: 0;
+  border-bottom: 2px solid #b9b6b6;
 }
+
 .task-card.future {
   background-color: #d3d3d3;
 }
@@ -121,12 +123,9 @@
 .task-placeholder:last-child {
   border-bottom: 0px;
 }
-.task-card-parent {
-  position: relative;
-}
 
 .custom-tooltip {
-  position: fixed; /* Changed from absolute to fixed */
+  position: absolute; /* Changed from absolute to fixed */
   background-color: #ffff00; /* Bright yellow background */
   color: #333; /* Dark gray text for better readability */
   padding: 10px;
@@ -136,6 +135,7 @@
   border: 1px solid #e6e600;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 300px;
+  width: 300px;
   font-size: 11px;
   line-height: 1.4;
   pointer-events: none; /* Prevents the tooltip from interfering with mouse events */
@@ -281,4 +281,20 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+}
+
+.day-column.weekend {
+  background-color: #f0ecec; /* Light grey background for weekends */
+}
+.not-current-day {
+  border: 3px solid #ccc;
+}
+.task-card-parent.empty-task {
+  height: 100px; /* or whatever height you want */
+  background-color: #f9f9f9; /* light grey background */
+  border: 1px dashed #ccc; /* dashed border to indicate empty state */
+}
+
+.empty-task {
+  height: 100%;
 }

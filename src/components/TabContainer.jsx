@@ -29,21 +29,21 @@ const TabContainer = () => {
       <div className="tab-buttons">
         <button
           onClick={() => setActiveTab("routine")}
-          className={`tab-button py-2 sm:py-4 px-[16px] sm:px-[24] md:px-[48] ${
+          className={`tab-button py-2 sm:py-4 px-[16px] sm:px-[24px] md:px-[48px] ${
             activeTab === "routine" ? "active" : ""
           }`}>
           Routine
         </button>
         <button
           onClick={() => setActiveTab("periodic")}
-          className={`tab-button py-2 sm:py-4 px-[16px] sm:px-[24] md:px-[48] ${
+          className={`tab-button py-2 sm:py-4 px-[16px] sm:px-[24px] md:px-[48px] ${
             activeTab === "periodic" ? "active" : ""
           }`}>
           Periodic
         </button>
         <button
           onClick={() => setActiveTab("adHoc")}
-          className={`tab-button py-2 sm:py-4 px-[16px] sm:px-[24] md:px-[48] ${
+          className={`tab-button py-2 sm:py-4 px-[16px] sm:px-[24px] md:px-[48px] ${
             activeTab === "adHoc" ? "active" : ""
           }`}>
           Ad Hoc

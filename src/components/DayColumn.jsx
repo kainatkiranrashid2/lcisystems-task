@@ -1,11 +1,10 @@
 import PropTypes from "prop-types";
 import TaskCard from "./TaskCard";
 
-const DayColumn = ({ day, date, tasks, isCurrentDay }) => {
-  console.log(date);
+const DayColumn = ({ day, date, tasks, isCurrentDay, isWeekend, maxTasks }) => {
   return (
     <div
-      className={`day-column ${
+      className={`day-column ${isWeekend ? "weekend" : ""} ${
         isCurrentDay ? "current-day" : "not-current-day"
       }`}>
       <div className="day-header">
@@ -18,13 +17,15 @@ const DayColumn = ({ day, date, tasks, isCurrentDay }) => {
         <p className="task-date-p">{date}</p>
       </div>
       <div className="tasks-container">
-        {tasks.map((task, index) =>
-          task ? (
-            <TaskCard key={task.cw_route_name} task={task} />
-          ) : (
-            <div key={index} className="task-placeholder"></div>
-          )
-        )}
+        {Array.from({ length: maxTasks }).map((_, index) => (
+          <div key={index} className="task-card-parent">
+            {tasks[index] ? (
+              <TaskCard task={tasks[index]} />
+            ) : (
+              <div className="empty-task"></div>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -50,6 +51,8 @@ DayColumn.propTypes = {
     })
   ).isRequired,
   isCurrentDay: PropTypes.bool.isRequired,
+  isWeekend: PropTypes.bool.isRequired,
+  maxTasks: PropTypes.number.isRequired,
 };
 
 export default DayColumn;

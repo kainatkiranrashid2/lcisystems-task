@@ -1,15 +1,31 @@
 import DayColumn from "./DayColumn";
 import PropTypes from "prop-types";
-import { format, addDays } from "date-fns";
+import { format, addDays, startOfWeek } from "date-fns";
+
+import { useMemo } from "react";
 
 const WeeklySchedule = ({ routineData }) => {
   const currentDate = new Date();
-  const days = Array.from({ length: 7 }, (_, i) => addDays(currentDate, i));
+  const startOfCurrentWeek = startOfWeek(currentDate, { weekStartsOn: 6 }); // 6 represents Saturday
+  const days = Array.from({ length: 7 }, (_, i) =>
+    addDays(startOfCurrentWeek, i)
+  );
+
+  const maxTasks = useMemo(() => {
+    return days.reduce((max, day) => {
+      const dayAbbrev = format(day, "EE").slice(0, 2);
+      const dayTasks = routineData.filter((task) =>
+        task.friendlySchedule.includes(dayAbbrev)
+      );
+      return Math.max(max, dayTasks.length);
+    }, 0);
+  }, [routineData, days]);
 
   return (
     <div className="weekly-schedule">
       {days.map((day, index) => {
         const dayAbbrev = format(day, "EE").slice(0, 2);
+        const isWeekend = index === 0 || index === 1; // Saturday or Sunday
 
         const dayTasks = routineData.filter((task) =>
           task.friendlySchedule.includes(dayAbbrev)
@@ -21,7 +37,11 @@ const WeeklySchedule = ({ routineData }) => {
             day={format(day, "EEEE")}
             date={format(day, "dd")}
             tasks={dayTasks}
-            isCurrentDay={index === 0}
+            isCurrentDay={
+              format(day, "yyyy-MM-dd") === format(currentDate, "yyyy-MM-dd")
+            }
+            isWeekend={isWeekend}
+            maxTasks={maxTasks}
           />
         );
       })}
