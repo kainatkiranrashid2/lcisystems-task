@@ -20,7 +20,9 @@ const DayColumn = ({ day, date, tasks, isCurrentDay, isWeekend, maxTasks }) => {
       </div>
       <div className="tasks-container">
         {Array.from({ length: maxTasks }).map((_, index) => (
-          <div key={index} className="task-card-parent">
+          <div
+            key={index}
+            className=" flex-1 border-b-2 border-gray-400 border-solid	">
             {tasks[index] ? (
               <TaskCard task={tasks[index]} />
             ) : (
