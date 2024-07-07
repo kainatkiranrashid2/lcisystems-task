@@ -7,14 +7,16 @@ const DayColumn = ({ day, date, tasks, isCurrentDay, isWeekend, maxTasks }) => {
       className={`day-column ${isWeekend ? "weekend" : ""} ${
         isCurrentDay ? "current-day" : "not-current-day"
       }`}>
-      <div className="day-header">
-        <h3>{day}</h3>
+      <div className="text-center py-2 text-[9px] sm:text-[11px] md:text-[13px] lg:text-[15px] font-bold">
+        {day}
       </div>
       <div
         className={`task-date ${
           isCurrentDay ? "current-day-p" : "not-current-day-p"
         }`}>
-        <p className="task-date-p">{date}</p>
+        <p className="m-0 text-[8px] sm:text-[9px] md:text-[10px] lg:text-[12px]  pb-2">
+          {date}
+        </p>
       </div>
       <div className="tasks-container">
         {Array.from({ length: maxTasks }).map((_, index) => (
