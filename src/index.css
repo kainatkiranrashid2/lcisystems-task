@@ -66,11 +66,20 @@
   padding: 5px;
 }
 .task-card-parent {
-  flex: 1;
-  /* min-height: 0; */
-  border-bottom: 2px solid #b9b6b6;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 60px; /* Adjust this height as needed */
+  border-bottom: 1px solid #ccc;
 }
 
+.task-card-parent .empty-task {
+  flex: 1;
+}
+.empty-task {
+  flex: 1;
+}
 .task-card.future {
   background-color: #d3d3d3;
 }
@@ -278,11 +287,6 @@
 }
 .not-current-day {
   border: 3px solid #ccc;
-}
-.task-card-parent.empty-task {
-  height: 100px; /* or whatever height you want */
-  background-color: #f9f9f9; /* light grey background */
-  border: 1px dashed #ccc; /* dashed border to indicate empty state */
 }
 
 .empty-task {

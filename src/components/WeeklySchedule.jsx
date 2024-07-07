@@ -1,7 +1,6 @@
 import DayColumn from "./DayColumn";
 import PropTypes from "prop-types";
-import { format, addDays, startOfWeek } from "date-fns";
-
+import { format, addDays, startOfWeek, parseISO, isEqual } from "date-fns";
 import { useMemo } from "react";
 
 const WeeklySchedule = ({ routineData }) => {
@@ -11,25 +10,30 @@ const WeeklySchedule = ({ routineData }) => {
     addDays(startOfCurrentWeek, i)
   );
 
+  const dayAbbreviations = ["Sa", "Su", "Mo", "Tu", "We", "Th", "Fr"];
+
   const maxTasks = useMemo(() => {
-    return days.reduce((max, day) => {
-      const dayAbbrev = format(day, "EE").slice(0, 2);
-      const dayTasks = routineData.filter((task) =>
-        task.friendlySchedule.includes(dayAbbrev)
-      );
-      return Math.max(max, dayTasks.length);
-    }, 0);
-  }, [routineData, days]);
+    return Math.max(
+      ...routineData.map(
+        (task) => task.friendlySchedule.trim().split(" ").length
+      )
+    );
+  }, [routineData]);
 
   return (
     <div className="weekly-schedule">
       {days.map((day, index) => {
-        const dayAbbrev = format(day, "EE").slice(0, 2);
         const isWeekend = index === 0 || index === 1; // Saturday or Sunday
+        const dayAbbr = dayAbbreviations[index];
 
-        const dayTasks = routineData.filter((task) =>
-          task.friendlySchedule.includes(dayAbbrev)
-        );
+        const dayTasks = routineData.filter((task) => {
+          const taskDate = parseISO(task.d);
+          const isCurrentDayTask = isEqual(taskDate, day);
+          return (
+            task.friendlySchedule.includes(dayAbbr) &&
+            (task.future === "0" || (task.future === "1" && isCurrentDayTask))
+          );
+        });
 
         return (
           <DayColumn
@@ -52,6 +56,7 @@ const WeeklySchedule = ({ routineData }) => {
 WeeklySchedule.propTypes = {
   routineData: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.number.isRequired,
       d: PropTypes.string.isRequired,
       day: PropTypes.string.isRequired,
       cw_route_name: PropTypes.string.isRequired,

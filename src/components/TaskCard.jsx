@@ -1,23 +1,20 @@
 import { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
+import { format, parseISO } from "date-fns";
 
 const TaskCard = ({ task }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const cardRef = useRef(null);
   const tooltipRef = useRef(null);
+  console.log(task);
 
   const tooltipContent = `
-    Day: ${task.day}
-    Route Name: ${task.cw_route_name}
+    Day:     ${format(parseISO(task.d), "MM/dd/yyyy")}
+
     Rooms: ${task.rooms}
-    Schedule: ${task.friendlySchedule}
     Specialties: ${task.specialties}
     Cleaning Time: ${task.cleaning_Time_Min} minutes
-    Actual Time: ${task.actualTimeMin || "N/A"}
-    Work Records: ${task.nbrWorkRecords}
-    Future: ${task.future === "1" ? "Yes" : "No"}
-    Color: ${task.color}
-    Row Number: ${task.rowNumber}
+
   `;
 
   useEffect(() => {

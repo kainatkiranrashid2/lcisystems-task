@@ -1,7 +1,14 @@
 import PropTypes from "prop-types";
 import TaskCard from "./TaskCard";
 
-const DayColumn = ({ day, date, tasks, isCurrentDay, isWeekend, maxTasks }) => {
+const DayColumn = ({ day, date, tasks, isCurrentDay, isWeekend }) => {
+  const rows = Array(14).fill(null);
+
+  // Place tasks in their corresponding rows
+  tasks.forEach((task) => {
+    rows[task.rowNumber - 1] = task;
+  });
+
   return (
     <div
       className={`day-column ${isWeekend ? "weekend" : ""} ${
@@ -19,12 +26,12 @@ const DayColumn = ({ day, date, tasks, isCurrentDay, isWeekend, maxTasks }) => {
         </p>
       </div>
       <div className="tasks-container">
-        {Array.from({ length: maxTasks }).map((_, index) => (
+        {rows.map((task, index) => (
           <div
             key={index}
-            className=" flex-1 border-b-2 border-gray-400 border-solid	">
-            {tasks[index] ? (
-              <TaskCard task={tasks[index]} />
+            className="task-card-parent  border-b-2 border-gray-400 border-solid">
+            {task ? (
+              <TaskCard task={task} />
             ) : (
               <div className="empty-task"></div>
             )}
