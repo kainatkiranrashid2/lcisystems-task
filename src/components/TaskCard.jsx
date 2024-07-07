@@ -9,8 +9,7 @@ const TaskCard = ({ task }) => {
   console.log(task);
 
   const tooltipContent = `
-    Day:     ${format(parseISO(task.d), "MM/dd/yyyy")}
-
+    Day: ${format(parseISO(task.d), "MM/dd/yyyy")}
     Rooms: ${task.rooms}
     Specialties: ${task.specialties}
     Cleaning Time: ${task.cleaning_Time_Min} minutes
